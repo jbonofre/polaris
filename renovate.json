@@ -25,7 +25,7 @@
     "group:monorepos",
     "helpers:pinGitHubActionDigests",
     ":semanticPrefixFixDepsChoreOthers",
-    ":dependencyDashboard",
+    ":dependencyDashboard"
   ],
 
   // Added for posterity how to let Renovate manage version-branches, assuming that release branches
@@ -36,7 +36,7 @@
 
   pip_requirements: {
     // fileMatch default: (^|/)([\\w-]*)requirements\\.(txt|pip)$
-    "fileMatch": ["(^|/)([\\w-]*)requirements.*\\.txt$"],
+    "fileMatch": ["(^|/)([\\w-]*)requirements.*\\.txt$"]
   },
 
   packageRules: [
@@ -48,14 +48,14 @@
         "pip_requirements", "pip_setup", "poetry", "setup-cfg",
         "dockerfile", "devcontainer", "docker-compose",
         "github-actions"],
-      automerge: false, // just be explicit (false is the default)
+      automerge: false // just be explicit (false is the default)
     },
 
     // Reduce awssdk update frequency noise (awssdk has daily releases)
     {
       matchManagers: ["gradle"],
       matchPackagePrefixes: ["software.amazon.awssdk"],
-      extends: ["schedule:weekly"],
+      extends: ["schedule:weekly"]
     },
 
     // Turn off major & minor version updates on version-branches
@@ -63,7 +63,7 @@
       matchBaseBranches: ["/^release/.*/"],
       matchUpdateTypes: ["major", "minor"],
       enabled: false
-    },
+    }
   ],
 
   // Max 50 PRs in total, 5 per hour.
@@ -71,4 +71,6 @@
   // concurrent PRs limit.
   prConcurrentLimit: 50,
   prHourlyLimit: 5,
+
+  forkProcessing: "enabled"
 }
