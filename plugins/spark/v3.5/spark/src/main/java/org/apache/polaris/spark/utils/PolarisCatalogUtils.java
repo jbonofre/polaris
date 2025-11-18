@@ -50,6 +50,11 @@ public class PolarisCatalogUtils {
     return "delta".equalsIgnoreCase(provider);
   }
 
+  /** Check whether the table provider is parquet. */
+  public static boolean useParquet(String provider) {
+    return "parquet".equalsIgnoreCase(provider);
+  }
+
   /**
    * For tables whose location is managed by Spark Session Catalog, there will be no location or
    * path in the properties.

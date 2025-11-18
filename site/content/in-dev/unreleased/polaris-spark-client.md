@@ -123,7 +123,8 @@ build a Spark client jar locally from source. Please check out the Polaris repo 
 The Polaris Spark client has the following functionality limitations:
 1) Create table as select (CTAS) is not supported for Delta tables. As a result, the `saveAsTable` method of `Dataframe`
    is also not supported, since it relies on the CTAS support.
-2) Create a Delta table without explicit location is not supported.
-3) Rename a Delta table is not supported.
+2) Create a Delta or Parquet table without explicit location is not supported.
+3) Rename a Delta or Parquet table is not supported.
 4) ALTER TABLE ... SET LOCATION is not supported for DELTA table.
-5) For other non-Iceberg tables like csv, it is not supported.
+5) ALTER TABLE operations are not supported for Parquet tables.
+6) For other non-Iceberg tables like csv, it is not supported.

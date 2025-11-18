@@ -402,7 +402,7 @@ public class SparkCatalogTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"delta", "csv"})
+  @ValueSource(strings = {"delta", "csv", "parquet"})
   void testCreateAndLoadGenericTable(String format) throws Exception {
     Identifier identifier = Identifier.of(defaultNS, "generic-test-table");
     createAndValidateGenericTableWithLoad(catalog, identifier, defaultSchema, format);
@@ -427,9 +427,9 @@ public class SparkCatalogTest {
 
   @Test
   void testMixedTables() throws Exception {
-    // create two iceberg tables, and three non-iceberg tables
-    String[] tableNames = new String[] {"iceberg1", "iceberg2", "delta1", "csv1", "delta2"};
-    String[] tableFormats = new String[] {"iceberg", null, "delta", "csv", "delta"};
+    // create two iceberg tables, and four non-iceberg tables
+    String[] tableNames = new String[] {"iceberg1", "iceberg2", "delta1", "csv1", "parquet1", "delta2"};
+    String[] tableFormats = new String[] {"iceberg", null, "delta", "csv", "parquet", "delta"};
     for (int i = 0; i < tableNames.length; i++) {
       Identifier identifier = Identifier.of(defaultNS, tableNames[i]);
       createAndValidateGenericTableWithLoad(catalog, identifier, defaultSchema, tableFormats[i]);

@@ -113,14 +113,15 @@ bin/spark-shell \
 ```
 
 # Limitations
-The Polaris Spark client supports catalog management for both Iceberg and Delta tables, it routes all Iceberg table
-requests to the Iceberg REST endpoints, and routes all Delta table requests to the Generic Table REST endpoints.
+The Polaris Spark client supports catalog management for Iceberg, Delta, and Parquet tables. It routes all Iceberg table
+requests to the Iceberg REST endpoints, and routes all Delta and Parquet table requests to the Generic Table REST endpoints.
 
 The Spark Client requires at least delta 3.2.1 to work with Delta tables, which requires at least Apache Spark 3.5.3.
 Following describes the current functionality limitations of the Polaris Spark client:
 1) Create table as select (CTAS) is not supported for Delta tables. As a result, the `saveAsTable` method of `Dataframe`
    is also not supported, since it relies on the CTAS support.
-2) Create a Delta table without explicit location is not supported.
-3) Rename a Delta table is not supported.
-4) ALTER TABLE ... SET LOCATION is not supported for DELTA table.
-5) For other non-Iceberg tables like csv, it is not supported today.
+2) Create a Delta or Parquet table without explicit location is not supported.
+3) Rename a Delta or Parquet table is not supported.
+4) ALTER TABLE ... SET LOCATION is not supported for Delta table.
+5) ALTER TABLE operations are not supported for Parquet tables.
+6) For other non-Iceberg tables like csv, it is not supported today.
